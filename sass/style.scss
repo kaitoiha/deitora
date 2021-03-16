@@ -1,0 +1,289 @@
+// -----
+// 設定
+// -----
+
+
+// 色
+$color-main: #3f51b5; // ベース色
+$color-active: #e81919; // アクティブ色
+$color-background-base: #fff; // 背景色
+$color-text-base: #333; // テキスト色
+$hover-opacity: 0.6; // 透過度
+
+// レイアウト幅
+$layout-width-canvas: 1280px;
+$layout-width-inner: 1200px;
+
+// 階層
+$layer: (
+  modal: 100,
+  // モダール
+  drawer: 40,
+  // ドロワー
+  floating: 30,
+  // フローティングアイテム
+  header: 20,
+  // ヘッダー
+  footer: 10,
+  // フッター
+  default: 1,
+);
+
+// 余白
+$padding-pc: 24px;
+$padding-tab: 24px;
+$padding-sp: 16px;
+
+// ヘッダー高さ
+$header-height-pc: 100px;
+$header-height-sp: 60px;
+
+
+
+// フォント
+$font-family-default: "游ゴシック体", "Yu Gothic", yugothic, "ヒラギノ角ゴ Pro",
+  "Hiragino Kaku Gothic Pro", "メイリオ", meiryo, "MS Pゴシック", "MS PGothic",
+  sans-serif; // 標準フォント
+$font-family-english: sans-serif;
+$font-family-base: $font-family-default;
+$font-size-base: 16px;
+$font-weight-base: 400;
+$line-height-base: 1.6;
+
+// ブレークポイント
+$breakpoints: (
+  "sp": "(max-width: 767px)",
+  "tab-only":
+    "(min-width: 768px) and (max-width: #{$layout-width-inner + $padding-pc * 2 - 1px})",
+  "tab": "(max-width: #{$layout-width-inner + $padding-pc * 2 - 1px})",
+  "pc": "(min-width: #{$layout-width-inner})",
+);
+
+// メディアクエリー
+@mixin mq($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+.sec{
+  padding-top: 100px;
+  padding-bottom: 120px;
+
+  @include mq('sp') {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+a:hover{
+  opacity: 0.7;
+}
+
+// セクションタイトル
+.section-ttl {
+	font-size: 48px;
+	font-weight: 700;
+	padding: 0 0 28px;
+	margin: 0;
+	position: relative;
+	text-align: center;
+	line-height: 1;
+
+	&::after {
+		content: "";
+		background: $color-main;
+		width: 60px;
+		height: 4px;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+
+		@include mq('sp') {
+			width: 48px;
+		}
+	}
+
+	@include mq('tab') {
+		font-size: 50px;
+		padding-bottom: 28px;
+	}
+
+	@include mq('sp') {
+		font-size: 42px;
+		padding-bottom: 16px;
+	}
+}
+// インナー
+.inner {
+	width: $layout-width-inner;
+	max-width: 100%;
+	margin: 0 auto;
+	height: inherit;
+
+	@include mq('tab') {
+		padding-left: $padding-tab;
+		padding-right: $padding-tab;
+	}
+
+	@include mq('sp') {
+		padding-left: $padding-sp;
+		padding-right: $padding-sp;
+	}
+}
+
+
+// PCだけ非表示
+.hidden-pc {
+	@include mq('pc') {
+		display: none;
+	}
+}
+
+// タブレットだけ非表示
+.hidden-tab {
+	@include mq('tab-only') {
+		display: none;
+	}
+}
+
+// スマホだけ非表示
+.hidden-sp {
+	@include mq('sp') {
+		display: none;
+	}
+}
+
+// ヘッダー
+
+.header {
+  background-color: $color-main;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: map-get($layer, 'header');
+  height: 100px;
+}
+  .header_inner {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    
+    img {
+      height: 40px;
+    }
+    .header_nav {
+      margin-left: auto;
+      @include mq('tab') {
+        display: none;
+      }
+      ul {
+        display: flex;
+      }
+      li {
+        margin-right: 40px;
+        &:last-child {
+          margin-right: 0;
+        }
+        a {
+          text-decoration: none;
+          color: $color-background-base;
+          font-size: 16px;
+          position: relative;
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background: $color-active;
+            opacity: 0;
+          }
+          &:hover::after{
+            opacity: 1;
+          }
+        }
+      }
+    }
+    &_hum {
+      display: none;
+      @include mq('tab') {
+        display: block;
+        margin-left: auto;
+        span {
+          width: 40px;
+          height: 2px;
+          background-color: #fff;
+          display: block;
+          margin: 0 0 .5rem;
+        }
+      }
+    }
+  }
+
+
+
+.mainvisual{
+  margin: 100px 0 0;
+  height: 600px;
+  width: 100%;
+  background: transparent url(../img/mainvisual.png) no-repeat top center / cover;
+  position: relative;
+	overflow: hidden;
+}
+.mainvisual_content{
+  position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	text-align: center;
+	line-height: 1.2;
+}
+.mainvisual_title {
+	font-size: 64px;
+  font-weight: 700;
+   @include mq('tab') {
+    font-size: 48px;
+   }
+  @include mq('sp') {
+			font-size: 36px;
+		}
+}
+.mainvisual_lead {
+	font-size: 24px;
+	font-weight: 700;
+  margin-top: 24px;
+}
+.mainvisual_button {
+  margin-top: 36px;
+}
+.button-mainvisual {
+	display: inline-block;
+	background: $color-main;
+	color: #fff;
+	text-align: center;
+	font-weight: 700;
+	text-decoration: none;
+	box-shadow: 0 3px 6px rgba(#000, 0.16);
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+	padding: 22px 24px;
+	border-radius: 8px;
+	font-size: 24px;
+	width: 384px;
+  max-width: 100%;
+}
+
+@import "./_card";
+@import "./_news";
+@import "./_access";
+@import "./_price";
+@import "./_contact";
+@import "./_footer";
+

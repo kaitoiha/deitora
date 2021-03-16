@@ -1,0 +1,231 @@
+.contact {
+  background-color: #efefef;
+}
+
+.contact-item {
+  margin: 80px auto 0;
+  padding: 60px;
+  background-color: #fff;
+  width: 800px;
+  max-width: 100%;
+
+  @include mq("sp") {
+    padding: 20px;
+    margin-top: 40px;
+  }
+}
+.contact-control {
+  margin-bottom: 60px;
+  display: flex;
+
+  @include mq("sp") {
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  dt {
+    width: 160px;
+
+    @include mq("sp") {
+      width: 100%;
+    }
+  }
+
+  dd {
+    flex-grow: 1;
+
+    @include mq("sp") {
+      width: 100%;
+      margin-top: 8px;
+    }
+  }
+}
+
+.contact-label {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.abc {
+  position: relative;
+
+  &::after {
+    content: "必須";
+    position: absolute;
+    background: $color-active;
+    border-radius: 4px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 700;
+    padding: 4px 8px;
+    width: 44px;
+    display: block;
+    top: calc(100% + 8px);
+    left: 0;
+    box-sizing: border-box;
+    @include mq("sp") {
+      top: -3px;
+      left: calc(100% + 8px);
+      line-height: 1;
+    }
+  }
+}
+
+.form-name {
+  width: 100%;
+  border: 1px solid #707070;
+  padding: 4px 16px;
+  background-color: transparent;
+  font-size: 14px;
+  height: 38px;
+}
+.form-select {
+  appearance: none;
+  background: transparent url(../img/select-arrow.svg) no-repeat center right
+    12px / 17px 14px;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 3px 16px;
+  width: 100%;
+  border: 1px solid #707070;
+  height: 38px;
+
+  &:invalid {
+    color: #cccccc;
+  }
+}
+
+.form-textarea {
+  width: 100%;
+  height: 240px;
+  border: 1px solid #707070;
+  padding: 12px 16px;
+  line-height: (24 / 14);
+  font-size: 14px;
+  vertical-align: bottom;
+
+  @include mq("sp") {
+    height: 180px;
+  }
+}
+
+.contact__submit {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.contact__radio{
+  margin: 33px 0 60px;
+  @include mq('sp'){
+    margin-bottom: 30px;
+  }
+}
+.form-radio {
+  display: none;
+  + span {
+    cursor: pointer;
+    display: inline-block;
+    padding-left: 28px;
+    position: relative;
+    &::before,
+		&::after {
+			content: "";
+			border-radius: 50%;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		&::before {
+			background: #fff;
+			border: 1px solid #707070;
+			display: block;
+			left: 0;
+			width: 20px;
+			height: 20px;
+		}
+
+		&::after {
+			background: $color-main;
+			border: 1px solid transparent;
+			left: 5px;
+			width: 10px;
+			height: 10px;
+			transition: opacity 0.3s ease 0s;
+			opacity: 0;
+		}
+
+  }
+  	&:checked {
+		+ span {
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.contact__check{
+  text-align: center;
+  font-size: 16px;
+  line-height: (27 / 16);
+  a{
+    font-weight: bold;
+    color: #333333;
+  }
+}
+.form-checkbox{
+  display: none;
+  	+ span {
+		cursor: pointer;
+		display: inline-block;
+		padding: 0 0 0 50px;
+		position: relative;
+
+		@include mq('sp') {
+			padding-left: 46px;
+		}
+
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		&::before {
+			background: #fff;
+			border: 1px solid #707070;
+			display: block;
+			left: 0;
+			width: 25px;
+			height: 25px;
+		}
+
+		&::after {
+			border: 1px solid transparent;
+			left: 0;
+			width: 25px;
+			height: 25px;
+			background: transparent url(../img/check.svg) no-repeat center center / contain;
+			transition: opacity 0.3s ease 0s;
+			opacity: 0;
+		}
+	}
+
+	&:checked {
+		+ span {
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+}
